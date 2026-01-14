@@ -1,1 +1,2 @@
+print("PDF reader ready")
 
