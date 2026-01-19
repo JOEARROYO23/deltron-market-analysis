@@ -1,4 +1,5 @@
-from pdf_reader import read_pdf_lines
+ from pdf_reader import read_pdf_lines
+from exporter import export_to_csv
 from csv_reader import read_csv_lines
 from parser import parse_lines
 import os
@@ -20,8 +21,18 @@ def load_data(file_path):
 if __name__ == "__main__":
     file_path = "data/raw/input_file"
 
+    # Leer datos (PDF o CSV)
     lines = load_data(file_path)
+
+    # Procesar líneas para obtener productos
     products = parse_lines(lines)
 
     print(f"Líneas procesadas: {len(lines)}")
     print(f"Productos detectados: {len(products)}")
+
+    # Exportar resultados a CSV
+    output_path = "data/processed/deltron_productos.csv"
+    export_to_csv(products, output_path)
+
+    print("Exportación completada:", output_path)
+
